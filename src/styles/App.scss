@@ -1,0 +1,88 @@
+@import 'variables';
+@import 'typography';
+@import 'global';
+
+.hide-mobile {
+  display: none;
+}
+
+.brand-logo {
+  span {
+    color: $logo-green;
+  }
+}
+
+.side-nav {
+  grid-area: side-nav;
+  background: linear-gradient(212deg, #041341 0, #0a1d33 100%) no-repeat
+    padding-box;
+  overflow: auto;
+  width: 300px;
+  padding: 0.7em 1.3em;
+  transition: all 1s;
+  height: 100vh;
+  color: $white;
+  position: absolute;
+
+  ul {
+    margin-top: 15px;
+    margin-left: 1.3em;
+
+    li {
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+  }
+}
+
+.dashboard {
+  grid-area: dashboard;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .analytics {
+    margin-top: 20px;
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+      box-shadow: 3px 3px 9px 0px rgba(0, 0, 0, 0.29);
+      td,
+      th {
+        border-bottom: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      tr:hover {
+        background-color: #ddd;
+      }
+
+      th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .App {
+    display: grid;
+    grid-template-columns: auto 9fr;
+    grid-template-areas: 'side-nav dashboard';
+
+    &:hover .side-nav {
+      width: 0;
+      padding: 0;
+    }
+  }
+
+  .side-nav {
+    position: static;
+  }
+}

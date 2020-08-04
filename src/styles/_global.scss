@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.container {
+  padding: 15px 25px;
+}
