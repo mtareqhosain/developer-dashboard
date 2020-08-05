@@ -4,17 +4,13 @@ import { Route, Switch } from 'react-router-dom';
 
 //fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faCheckSquare,
-  faCoffee,
-  faBars,
-} from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 
 // component imports
 import Navbar from './components/layout/Navbar';
 import Routes from './components/routing/Routes';
 
-library.add(faCheckSquare, faCoffee, faBars);
+library.add(faTimes, faBars);
 
 function App() {
   return (

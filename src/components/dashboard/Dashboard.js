@@ -4,10 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Dashboard = () => {
   return (
     <div className='dashboard container'>
-      <header>
-        <FontAwesomeIcon icon='bars' size='lg' />
-        <h4>Account</h4>
-      </header>
       <div className='analytics'>
         <small>API Usage Table</small>
         <table>

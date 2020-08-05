@@ -14,10 +14,65 @@ ul {
   list-style-type: none;
 }
 
+a {
+  color: white;
+}
+
 .active {
   font-weight: bold;
 }
 
 .container {
   padding: 15px 25px;
+}
+
+.ham {
+  cursor: pointer;
+}
+
+.card-1 {
+  padding: 10px 15px;
+  box-shadow: 3px 3px 9px 0px rgba(0, 0, 0, 0.29);
+}
+
+.light-color {
+  color: gray;
+}
+
+.btn-1 {
+  border: none;
+  background: none;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    padding: 15px 80px;
+  }
 }

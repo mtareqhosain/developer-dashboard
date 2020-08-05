@@ -12,6 +12,13 @@
   }
 }
 
+.nav-header {
+  grid-area: nav-header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .side-nav {
   grid-area: side-nav;
   background: linear-gradient(212deg, #041341 0, #0a1d33 100%) no-repeat
@@ -24,6 +31,12 @@
   color: $white;
   position: absolute;
 
+  .side-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   ul {
     margin-top: 15px;
     margin-left: 1.3em;
@@ -34,17 +47,20 @@
     }
   }
 }
+.close-sidebar {
+  width: 0;
+  padding: 0;
+  opacity: 0;
+}
 
 .dashboard {
-  grid-area: dashboard;
-
-  header {
-    display: flex;
-    justify-content: space-between;
-  }
-
+  grid-area: content;
   .analytics {
     margin-top: 20px;
+
+    small {
+      font-weight: bold;
+    }
 
     table {
       margin-top: 20px;
@@ -55,6 +71,7 @@
       th {
         border-bottom: 1px solid #ddd;
         padding: 8px;
+        padding-left: 25px;
       }
 
       tr:hover {
@@ -65,24 +82,68 @@
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
+        font-weight: 600;
+        color: gray;
       }
     }
   }
 }
 
-@media only screen and (min-width: 1200px) {
+.account {
+  grid-area: content;
+  margin-top: 40px;
+
+  h2 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 33px;
+  }
+
+  .account-cards {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+    .card-1 {
+      margin-bottom: 25px;
+      button {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
   .App {
     display: grid;
     grid-template-columns: auto 9fr;
-    grid-template-areas: 'side-nav dashboard';
+    grid-template-rows: 50px auto;
+    grid-template-areas:
+      'side-nav nav-header'
+      'side-nav content';
+  }
 
-    &:hover .side-nav {
-      width: 0;
-      padding: 0;
-    }
+  .hide-desktop {
+    display: none;
   }
 
   .side-nav {
     position: static;
+  }
+
+  .account {
+    .account-cards {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 60px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 1360px) {
+  .brand-logo {
+    font-size: 1.8rem;
   }
 }
