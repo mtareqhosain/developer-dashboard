@@ -10,16 +10,22 @@ import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 import Navbar from './components/layout/Navbar';
 import Routes from './components/routing/Routes';
 
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
 library.add(faTimes, faBars);
 
 function App() {
   return (
-    <div className='App'>
-      <Navbar />
-      <Switch>
-        <Route component={Routes} />
-      </Switch>
-    </div>
+    <Provider store={store}>
+      <div className='App'>
+        <Navbar />
+        <Switch>
+          <Route component={Routes} />
+        </Switch>
+      </div>
+    </Provider>
   );
 }
 

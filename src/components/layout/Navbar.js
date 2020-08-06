@@ -44,7 +44,7 @@ const Navbar = () => {
 
         <div className='dropdown'>
           <h4 className='light-color btn-1'>Account</h4>
-          <div class='dropdown-content'>
+          <div className='dropdown-content'>
             <p>Logout</p>
           </div>
         </div>

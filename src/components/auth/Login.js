@@ -1,7 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import { loginUser } from '../../actions/auth';
+import PropTypes from 'prop-types';
 
-const Login = () => {
+const Login = ({ isAuthenticated, loginUser }) => {
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(formState);
+    loginUser(formState);
+  };
+
+  const { email, password } = formState;
+
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
   return (
     <div className='auth container'>
       <div className='auth-flex'>
@@ -10,10 +34,22 @@ const Login = () => {
           alt=''
           className='auth_img hide-mobile'
         />
-        <form className='auth-form'>
+        <form className='auth-form' onSubmit={handleSubmit}>
           <h2 className='purple-text'>Sign in to Barikoi</h2>
-          <input type='text' placeholder='Email' />
-          <input type='text' placeholder='Password' />
+          <input
+            type='text'
+            placeholder='Email'
+            name='email'
+            value={email}
+            onChange={handleChange}
+          />
+          <input
+            type='text'
+            placeholder='Password'
+            name='password'
+            value={password}
+            onChange={handleChange}
+          />
           <br />
           <input type='checkbox' name='show-password' id='' />
           <span>Show Password</span>
@@ -35,4 +71,12 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+Login.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
+
+export default connect(mapStateToProps, { loginUser })(Login);
