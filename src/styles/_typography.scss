@@ -3,7 +3,8 @@ h2,
 h3,
 h3,
 h4 {
-  font-family: 'Roboto', sans-serif;
+  // font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 small {
@@ -26,10 +27,6 @@ a {
   font-weight: 400;
 }
 
-small {
-  font-weight: 300;
-}
-
 legend {
   font-family: 'Roboto', sans-serif;
   font-size: 22px;
@@ -47,4 +44,16 @@ legend {
 
 .op-80 {
   opacity: 80%;
+}
+
+@media only screen and (min-width: 1024px) {
+  h2 {
+    font-size: 26px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  h2 {
+    font-size: 30px;
+  }
 }

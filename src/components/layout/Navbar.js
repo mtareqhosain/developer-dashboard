@@ -20,7 +20,7 @@ const Navbar = () => {
           <FontAwesomeIcon
             icon='times'
             size='lg'
-            className='hide-desktop '
+            className='hide-tablet '
             onClick={toggleSidebar}
           />
         </div>
@@ -31,6 +31,9 @@ const Navbar = () => {
           </li>
           <li>
             <Link to='/account'>Account</Link>
+          </li>
+          <li>
+            <Link to='/register'>Register --check--</Link>
           </li>
         </ul>
       </div>
