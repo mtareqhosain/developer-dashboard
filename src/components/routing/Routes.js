@@ -7,12 +7,14 @@ import Account from '../account/Account';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
 
+import PrivateRoute from './PrivateRoute';
+
 const Routes = (props) => {
   return (
     <Fragment>
       <Switch>
-        <Route exact path='/' component={Dashboard} />
-        <Route exact path='/account' component={Account} />
+        <PrivateRoute exact path='/' component={Dashboard} />
+        <PrivateRoute exact path='/account' component={Account} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
       </Switch>

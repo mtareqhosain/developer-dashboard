@@ -40,7 +40,8 @@
     margin-bottom: 15px;
   }
 
-  input[type='text'] {
+  input[type='text'],
+  input[type='email'] {
     background-color: $text-input;
     border: none;
     outline: none;

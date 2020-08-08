@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Navbar = () => {
+import { logout } from '../../actions/auth';
+
+const Navbar = ({ isAuthenticated, loading, logout }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -12,7 +15,11 @@ const Navbar = () => {
 
   return (
     <Fragment>
-      <div className={`side-nav show-desktop ${isOpen ? '' : 'close-sidebar'}`}>
+      <div
+        className={`side-nav show-desktop ${
+          isOpen && isAuthenticated ? '' : 'close-sidebar'
+        }`}
+      >
         <div className='side-header'>
           <h2 className='brand-logo'>
             Bari<span>koi</span>
@@ -37,7 +44,11 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <header className='nav-header container'>
+      <header
+        className={`nav-header container ${
+          isAuthenticated ? '' : 'close-sidebar'
+        }`}
+      >
         <span className='ham light-color'>
           <FontAwesomeIcon icon='bars' size='lg' onClick={toggleSidebar} />
         </span>
@@ -45,7 +56,7 @@ const Navbar = () => {
         <div className='dropdown'>
           <h4 className='light-color btn-1'>Account</h4>
           <div className='dropdown-content'>
-            <p>Logout</p>
+            <p onClick={() => logout()}>Logout</p>
           </div>
         </div>
       </header>
@@ -53,4 +64,9 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading,
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);

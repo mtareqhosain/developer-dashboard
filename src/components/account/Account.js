@@ -1,27 +1,41 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const Account = () => {
+const Account = ({ user: { user }, loading }) => {
   return (
-    <div className='account container'>
-      <h2>Account Overview</h2>
-      <div className='account-cards'>
-        <div className='card-1'>
-          <h3>API Panel</h3>
-          <p>Active Api Key: 1</p>
-          <p>Current Plan: Pay as you go</p>
-          <p>Active Api Key: MTc0OTpBVjZNOFo2MzFJ</p>
-          <button className='btn-1'>API</button>
-        </div>
-        <div className='card-1'>
-          <h3>Profile</h3>
-          <p>User: maruf_m1</p>
-          <p>Email: maruf.ahmed@northsouth.edu</p>
-          <p>Contact: 01681851089</p>
-          <button className='btn-1'>Reset Password</button>
+    user && (
+      <div className='account container'>
+        <h2>Account Overview</h2>
+        <div className='account-cards'>
+          <div className='card-1'>
+            <h3>API Panel</h3>
+            <p>Active Api Key: 1</p>
+            <p>Current Plan: Pay as you go</p>
+            <p>Active Api Key: MTc0OTpBVjZNOFo2MzFJ</p>
+            <button className='btn-1'>API</button>
+          </div>
+          <div className='card-1'>
+            <h3>Profile</h3>
+            <p>User: {user.name}</p>
+            <p>Email: {user.email}</p>
+            <p>Contact: {user.phone}</p>
+            <button className='btn-1'>Reset Password</button>
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
 };
 
-export default Account;
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+  loading: state.auth.loading,
+});
+
+Account.propTypes = {
+  user: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
+
+export default connect(mapStateToProps)(Account);
