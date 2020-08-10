@@ -2,6 +2,7 @@
 @import 'typography';
 @import 'global';
 @import 'auth';
+@import 'account';
 
 .brand-logo {
   span {
@@ -95,7 +96,7 @@
 
 .account {
   grid-area: content;
-  margin-top: 40px;
+  position: relative;
 
   h2 {
     text-align: center;
@@ -108,10 +109,38 @@
     flex-direction: column;
     margin-top: 30px;
 
-    .card-1 {
+    .card-2 {
+      padding-top: 1.7rem;
       margin-bottom: 25px;
+      position: relative;
+      overflow: hidden;
+
+      .card-header {
+        background-color: $color-block-violet;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 43px;
+        padding-left: 1.7rem;
+        padding-top: 0.5rem;
+        color: white;
+      }
+
       button {
         margin-top: 15px;
+      }
+
+      & > * {
+        margin-bottom: 0.7rem;
+      }
+
+      & > p:first-of-type {
+        margin-top: 30px;
+      }
+
+      & > :first-child {
+        margin-bottom: 1rem;
       }
     }
   }
@@ -132,6 +161,9 @@
   }
 
   .account {
+    .account-card {
+      width: 365px;
+    }
     .account-cards {
       display: flex;
       flex-direction: row;

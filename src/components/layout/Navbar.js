@@ -8,6 +8,7 @@ import { logout } from '../../actions/auth';
 
 const Navbar = ({ isAuthenticated, loading, logout }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const [dropdown, setDropdown] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -39,9 +40,6 @@ const Navbar = ({ isAuthenticated, loading, logout }) => {
           <li>
             <Link to='/account'>Account</Link>
           </li>
-          <li>
-            <Link to='/register'>Register --check--</Link>
-          </li>
         </ul>
       </div>
       <header
@@ -54,9 +52,23 @@ const Navbar = ({ isAuthenticated, loading, logout }) => {
         </span>
 
         <div className='dropdown'>
-          <h4 className='light-color btn-1'>Account</h4>
-          <div className='dropdown-content'>
-            <p onClick={() => logout()}>Logout</p>
+          <h4
+            className='light-color btn-1'
+            onClick={() => {
+              setDropdown(!dropdown);
+            }}
+          >
+            Account
+          </h4>
+          <div className={`dropdown-content ${dropdown ? 'open' : ''}`}>
+            <p
+              onClick={() => {
+                logout();
+                setDropdown(false);
+              }}
+            >
+              Logout
+            </p>
           </div>
         </div>
       </header>

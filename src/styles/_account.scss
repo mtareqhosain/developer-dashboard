@@ -1,0 +1,48 @@
+.popup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 86%;
+  max-width: 600px;
+
+  .popup-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    input[type='text'] {
+      width: 100%;
+      margin-right: 10px;
+      background-color: $text-input;
+      border: none;
+      outline: none;
+      border-radius: 0.6rem;
+      padding: 0.8rem 1rem;
+    }
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(100vh - 75px);
+  width: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.6);
+}
+
+@media only screen and (min-width: 1024px) {
+  .modal {
+    height: 100%;
+  }
+}

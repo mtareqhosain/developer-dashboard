@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Spinner from '../layout/Spinner';
 
 const Dashboard = ({ isAuthenticated, loading }) => {
   return (
     !loading && (
       <div className='dashboard container'>
+        <Spinner loading={loading} />
         <div className='analytics wrapper'>
           <small>API Usage Table</small>
           <table>
@@ -54,4 +56,4 @@ const mapStateToProps = (state) => ({
   loading: state.auth.loading,
 });
 
-export default connect()(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

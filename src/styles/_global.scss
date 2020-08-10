@@ -37,8 +37,19 @@ a {
 }
 
 .card-1 {
-  padding: 10px 15px;
-  box-shadow: 3px 3px 9px 0px rgba(0, 0, 0, 0.29);
+  background-color: white;
+  padding: 1.2rem 1.7rem;
+  border-radius: 0.8rem;
+  box-shadow: 0px 18px 32px #21318414;
+  border: 2px solid rgba($color: #c6dbf793, $alpha: 0.3);
+}
+
+.card-2 {
+  background-color: white;
+  padding: 0rem 1.7rem;
+  border-radius: 0.8rem;
+  box-shadow: 0px 18px 32px #21318414;
+  border: 2px solid rgba($color: #c6dbf793, $alpha: 0.3);
 }
 
 .hide-mobile {
@@ -47,6 +58,11 @@ a {
 
 .light-color {
   color: gray;
+}
+
+.active-btn {
+  background: coral !important;
+  color: white;
 }
 
 .purple-text {
@@ -64,6 +80,9 @@ a {
   font-weight: bold;
   font-size: 15px;
   cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 0.3rem;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
@@ -123,9 +142,10 @@ a {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   cursor: pointer;
+  z-index: 2;
 }
 
-.dropdown:hover .dropdown-content {
+.open {
   display: block;
 }
 

@@ -10,6 +10,11 @@ const Register = ({ isAuthenticated, register }) => {
     password: '',
   });
 
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(!passwordShown);
+  };
+
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
@@ -61,7 +66,7 @@ const Register = ({ isAuthenticated, register }) => {
             required
           />
           <input
-            type='text'
+            type={passwordShown ? 'text' : 'password'}
             placeholder='Password'
             name='password'
             value={password}
@@ -69,7 +74,12 @@ const Register = ({ isAuthenticated, register }) => {
             required
           />
           <br />
-          <input type='checkbox' name='show-password' id='' />
+          <input
+            type='checkbox'
+            name='show-password'
+            id=''
+            onChange={togglePasswordVisiblity}
+          />
           <span>Show Password</span>
           <div className='button-space'>
             <button className='bkoi-btn btn-primary btn-primary-circle'>

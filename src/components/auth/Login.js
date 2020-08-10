@@ -10,6 +10,11 @@ const Login = ({ isAuthenticated, loginUser }) => {
     password: '',
   });
 
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(!passwordShown);
+  };
+
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
@@ -37,21 +42,26 @@ const Login = ({ isAuthenticated, loginUser }) => {
         <form className='auth-form' onSubmit={handleSubmit}>
           <h2 className='purple-text'>Sign in to Barikoi</h2>
           <input
-            type='text'
+            type='email'
             placeholder='Email'
             name='email'
             value={email}
             onChange={handleChange}
           />
           <input
-            type='text'
+            type={passwordShown ? 'text' : 'password'}
             placeholder='Password'
             name='password'
             value={password}
             onChange={handleChange}
           />
           <br />
-          <input type='checkbox' name='show-password' id='' />
+          <input
+            type='checkbox'
+            name='show-password'
+            id=''
+            onChange={togglePasswordVisiblity}
+          />
           <span>Show Password</span>
           <div className='button-space'>
             <button className='bkoi-btn btn-primary btn-primary-circle'>
