@@ -6,6 +6,11 @@ import {
   REGISTER_FAIL,
   USER_LOAD_SUCCESS,
   USER_LOAD_FAIL,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAIL,
+  GET_KEY_SUCCESS,
+  GET_KEY_FAIL,
+  GENERATE_KEY_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +19,9 @@ const initialState = {
   error: null,
   loading: true,
   user: null,
+  message: '',
+  apiKey: null,
+  apiKeyMessage: null,
 };
 
 export default function (state = initialState, action) {
@@ -25,6 +33,33 @@ export default function (state = initialState, action) {
         loading: false,
         user: action.payload,
       };
+    case RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        message: action.payload.message,
+      };
+
+    case GET_KEY_SUCCESS:
+      return {
+        ...state,
+        apiKeyMessage: action.payload.message,
+        apiKey: action.payload.current_active_key,
+      };
+
+    case GENERATE_KEY_SUCCESS:
+      return {
+        ...state,
+        apiKeyMessage: action.payload.message,
+        apiKey: action.payload.key,
+      };
+
+    case GET_KEY_FAIL:
+      return {
+        ...state,
+        apiKeyMessage: action.payload.message,
+        apiKey: null,
+      };
+
     case REGISTER_SUCCESS:
     case LOGIN_USER:
       console.log('TOKEN FOUND', action.payload);

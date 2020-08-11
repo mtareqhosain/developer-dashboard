@@ -4,45 +4,44 @@ import PropTypes from 'prop-types';
 import Spinner from '../layout/Spinner';
 
 const Dashboard = ({ isAuthenticated, loading }) => {
-  return (
-    !loading && (
-      <div className='dashboard container'>
-        <Spinner loading={loading} />
-        <div className='analytics wrapper'>
-          <small>API Usage Table</small>
-          <table>
-            <tr>
-              <th>API</th>
-              <th>Usage</th>
-            </tr>
-            <tr>
-              <td>Autocomplete</td>
-              <td>402</td>
-            </tr>
-            <tr>
-              <td>ReverseGeo</td>
-              <td>200</td>
-            </tr>
-            <tr>
-              <td>Geocode</td>
-              <td>200</td>
-            </tr>
-            <tr>
-              <td>Nearby</td>
-              <td>200</td>
-            </tr>
-            <tr>
-              <td>Distance</td>
-              <td>200</td>
-            </tr>
-            <tr>
-              <td>Rupantor</td>
-              <td>200</td>
-            </tr>
-          </table>
-        </div>
+  return loading ? (
+    <Spinner loading={loading} />
+  ) : (
+    <div className='dashboard container'>
+      <div className='analytics wrapper'>
+        <small>API Usage Table</small>
+        <table>
+          <tr>
+            <th>API</th>
+            <th>Usage</th>
+          </tr>
+          <tr>
+            <td>Autocomplete</td>
+            <td>402</td>
+          </tr>
+          <tr>
+            <td>ReverseGeo</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>Geocode</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>Nearby</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>Distance</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td>Rupantor</td>
+            <td>200</td>
+          </tr>
+        </table>
       </div>
-    )
+    </div>
   );
 };
 

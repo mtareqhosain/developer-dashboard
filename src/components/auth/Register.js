@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 
 const Register = ({ isAuthenticated, register }) => {
   const [formState, setFormState] = useState({
+    name: '',
+    userType: '2',
+    phone: '',
     email: '',
     password: '',
   });
@@ -21,8 +24,6 @@ const Register = ({ isAuthenticated, register }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(formState);
     register(formState);
   };
 

@@ -10,6 +10,11 @@ import {
   REGISTER_FAIL,
   USER_LOAD_SUCCESS,
   USER_LOAD_FAIL,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAIL,
+  GET_KEY_SUCCESS,
+  GET_KEY_FAIL,
+  GENERATE_KEY_SUCCESS,
 } from './types';
 
 const BASE_URL = 'https://admin.barikoi.xyz:8090';
@@ -100,4 +105,78 @@ export const logout = () => async (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
+};
+
+export const resetPassword = (formData) => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.post(`${BASE_URL}/auth/UpdatePass`, formData);
+
+    if (res.data.message === 'Password changed successfully.') {
+      dispatch({
+        type: RESET_PASSWORD_SUCCESS,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({
+      type: RESET_PASSWORD_FAIL,
+    });
+  }
+};
+
+export const getApiKey = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.get(`${BASE_URL}/auth/business/CurrentActiveKey`);
+
+    if (res.data.current_active_key) {
+      dispatch({
+        type: GET_KEY_SUCCESS,
+        payload: res.data,
+      });
+    } else {
+      dispatch({
+        type: GET_KEY_FAIL,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({
+      type: GET_KEY_FAIL,
+    });
+  }
+};
+
+export const generateKey = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.post(`${BASE_URL}/auth/business/keygen`);
+
+    if (res.data.message === 'Key Generated!') {
+      dispatch({
+        type: GET_KEY_SUCCESS,
+        payload: res.data,
+      });
+    } else {
+      dispatch({
+        type: GET_KEY_FAIL,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({
+      type: GET_KEY_FAIL,
+      payload: err.data,
+    });
+  }
 };

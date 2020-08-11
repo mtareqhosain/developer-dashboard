@@ -1,7 +1,13 @@
-import React, { Fragment, useEffect, useRef } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { connect } from 'react-redux';
+import { resetPassword } from '../../actions/auth';
 
-const ResetForm = ({ resetPopup, toggleResetPopup }) => {
+const ResetForm = ({ resetPopup, toggleResetPopup, resetPassword }) => {
+  const [formState, setFormState] = useState({
+    oldPass: '',
+    newPass: '',
+  });
   useEffect(() => {
     document.addEventListener('mousedown', handleToggle);
     return () => {
@@ -10,6 +16,15 @@ const ResetForm = ({ resetPopup, toggleResetPopup }) => {
   }, []);
 
   const node = useRef();
+
+  const handleChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    resetPassword(formState);
+  };
 
   const handleToggle = (e) => {
     if (node.current.contains(e.target)) {
@@ -20,7 +35,7 @@ const ResetForm = ({ resetPopup, toggleResetPopup }) => {
   return (
     <Fragment>
       <div className='modal'></div>
-      <div ref={node} className='popup card-1'>
+      <form ref={node} className='popup card-1' onSubmit={handleSubmit}>
         <div className='popup-header'>
           <h3>Reset Password</h3>
           <FontAwesomeIcon
@@ -31,17 +46,27 @@ const ResetForm = ({ resetPopup, toggleResetPopup }) => {
         </div>
 
         <div className='input-group'>
-          <input type='text' placeholder='Current Password' />
+          <input
+            type='text'
+            placeholder='Current Password'
+            name='oldPass'
+            onChange={handleChange}
+          />
           <FontAwesomeIcon icon='eye-slash' size='lg' />
         </div>
         <div className='input-group'>
-          <input type='text' placeholder='New Password' />
+          <input
+            type='text'
+            placeholder='New Password'
+            name='newPass'
+            onChange={handleChange}
+          />
           <FontAwesomeIcon icon='eye-slash' size='lg' />
         </div>
         <button className='btn-1'>Update Password</button>
-      </div>
+      </form>
     </Fragment>
   );
 };
 
-export default ResetForm;
+export default connect(null, { resetPassword })(ResetForm);
