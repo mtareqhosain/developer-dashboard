@@ -11,6 +11,9 @@ import {
   GET_KEY_SUCCESS,
   GET_KEY_FAIL,
   GENERATE_KEY_SUCCESS,
+  GET_ANALYTICS_SUCCESS,
+  GET_ANALYTICS_FAIL,
+  CLEAR_ERRORS,
 } from '../actions/types';
 
 const initialState = {
@@ -19,9 +22,10 @@ const initialState = {
   error: null,
   loading: true,
   user: null,
-  message: '',
+  message: null,
   apiKey: null,
   apiKeyMessage: null,
+  analytics: null,
 };
 
 export default function (state = initialState, action) {
@@ -53,11 +57,23 @@ export default function (state = initialState, action) {
         apiKey: action.payload.key,
       };
 
+    case GET_ANALYTICS_SUCCESS:
+      return {
+        ...state,
+        analytics: action.payload,
+      };
+
     case GET_KEY_FAIL:
       return {
         ...state,
         apiKeyMessage: action.payload.message,
         apiKey: null,
+      };
+
+    case GET_ANALYTICS_FAIL:
+      return {
+        ...state,
+        analytics: null,
       };
 
     case REGISTER_SUCCESS:
@@ -69,6 +85,11 @@ export default function (state = initialState, action) {
         data: action.payload,
         isAuthenticated: true,
         loading: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
       };
     case LOGOUT:
     case REGISTER_FAIL:

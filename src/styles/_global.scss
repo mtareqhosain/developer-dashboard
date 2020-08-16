@@ -28,8 +28,12 @@ a {
   font-weight: bold;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .container {
-  padding: 15px 25px;
+  padding: 0.7em 25px;
 }
 
 .ham {
@@ -46,10 +50,12 @@ a {
 
 .card-2 {
   background-color: white;
-  padding: 0rem 1.7rem;
+  padding: 0 1.7rem;
   border-radius: 0.8rem;
   box-shadow: 0px 18px 32px #21318414;
   border: 2px solid rgba($color: #c6dbf793, $alpha: 0.3);
+  display: flex;
+  flex-direction: column;
 }
 
 .hide-mobile {
@@ -87,6 +93,9 @@ a {
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
+}
+.btn-left-corner {
+  align-self: flex-start;
 }
 
 .btn-primary {
@@ -149,6 +158,10 @@ a {
   display: block;
 }
 
+.hide {
+  display: none;
+}
+
 @media only screen and (min-width: 1024px) {
   .hide-tablet {
     display: none;
@@ -161,6 +174,6 @@ a {
 
 @media only screen and (min-width: 1200px) {
   .container {
-    padding: 15px 80px;
+    padding: 0.7em 80px;
   }
 }

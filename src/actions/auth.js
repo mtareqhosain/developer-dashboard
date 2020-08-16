@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import setAuthToken from '../utils/setAuthToken';
+import { setAlert } from './alert';
 
 import {
   LOGIN_USER,
@@ -15,9 +16,18 @@ import {
   GET_KEY_SUCCESS,
   GET_KEY_FAIL,
   GENERATE_KEY_SUCCESS,
+  GET_ANALYTICS_SUCCESS,
+  GET_ANALYTICS_FAIL,
+  CLEAR_ERRORS,
 } from './types';
 
 const BASE_URL = 'https://admin.barikoi.xyz:8090';
+
+export const clearErrors = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_ERRORS,
+  });
+};
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
@@ -57,13 +67,12 @@ export const register = (formData) => async (dispatch) => {
   } catch (err) {
     console.log('Reg error', err.response.data.message);
 
-    // if (errors) {
-    //   errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    // }
+    const errors = Object.values(err.response.data.message);
+    console.log('Reg errors', errors);
 
-    dispatch({
-      type: REGISTER_FAIL,
-    });
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error, 'danger')));
+    }
   }
 };
 
@@ -92,6 +101,8 @@ export const loginUser = (formData) => async (dispatch) => {
         type: LOGIN_FAIL,
         payload: res.data.message,
       });
+
+      dispatch(setAlert(res.data.message, 'danger'));
     }
   } catch (err) {
     // console.log('error: ', err.response.data);
@@ -120,6 +131,8 @@ export const resetPassword = (formData) => async (dispatch) => {
         type: RESET_PASSWORD_SUCCESS,
         payload: res.data,
       });
+
+      dispatch(setAlert(res.data.message, 'success'));
     }
   } catch (err) {
     dispatch({
@@ -177,6 +190,33 @@ export const generateKey = () => async (dispatch) => {
     dispatch({
       type: GET_KEY_FAIL,
       payload: err.data,
+    });
+  }
+};
+
+export const getAnalytics = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.get(`${BASE_URL}/developer/analytics`);
+
+    if (res.data.message === 'Token is Invalid') {
+      dispatch({
+        type: GET_ANALYTICS_FAIL,
+        payload: res.data.message,
+      });
+    } else {
+      dispatch({
+        type: GET_ANALYTICS_SUCCESS,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({
+      type: GET_ANALYTICS_FAIL,
+      payload: err.data.message,
     });
   }
 };

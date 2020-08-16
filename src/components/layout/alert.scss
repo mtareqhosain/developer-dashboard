@@ -1,0 +1,20 @@
+.alerts {
+}
+.alert {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 20;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+}
+
+.alert-danger {
+  background-color: #c70039;
+}
+
+.alert-success {
+  background-color: #43de7f;
+}

@@ -38,13 +38,16 @@ const Account = ({
             <p>Active Api Key: {apiKey}</p>
             {apiKey ? (
               <button
-                className='btn-1'
-                onClick={() => toggleApiPopup(!resetPopup)}
+                className='btn-1 btn-left-corner'
+                onClick={() => toggleApiPopup(!apiPopup)}
               >
                 API
               </button>
             ) : (
-              <button className='btn-1' onClick={() => generateKey()}>
+              <button
+                className='btn-1 btn-left-corner'
+                onClick={() => generateKey()}
+              >
                 Generate API KEY
               </button>
             )}
@@ -57,7 +60,7 @@ const Account = ({
             <p>Email: {user.email}</p>
             <p>Contact: {user.phone}</p>
             <button
-              className='btn-1'
+              className='btn-1 btn-left-corner'
               onClick={() => toggleResetPopup(!resetPopup)}
             >
               Reset Password
@@ -72,7 +75,11 @@ const Account = ({
         )}
 
         {apiPopup && (
-          <ApiList apiPopup={apiPopup} toggleApiPopup={toggleApiPopup} />
+          <ApiList
+            apiPopup={apiPopup}
+            toggleApiPopup={toggleApiPopup}
+            apiKey={apiKey}
+          />
         )}
       </div>
     )

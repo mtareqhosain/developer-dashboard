@@ -26,9 +26,9 @@ const Navbar = ({ isAuthenticated, loading, logout }) => {
             Bari<span>koi</span>
           </h2>
           <FontAwesomeIcon
-            icon='times'
+            icon='bars'
             size='lg'
-            className='hide-tablet '
+            className='pointer'
             onClick={toggleSidebar}
           />
         </div>
@@ -48,7 +48,12 @@ const Navbar = ({ isAuthenticated, loading, logout }) => {
         }`}
       >
         <span className='ham light-color'>
-          <FontAwesomeIcon icon='bars' size='lg' onClick={toggleSidebar} />
+          <FontAwesomeIcon
+            icon='chevron-right'
+            size='lg'
+            onClick={toggleSidebar}
+            className={` ${isOpen && isAuthenticated ? 'hide' : ''}`}
+          />
         </span>
 
         <div className='dropdown'>

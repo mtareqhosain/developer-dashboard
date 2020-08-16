@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Clipboard from 'react-clipboard.js';
 
-const ApiList = ({ apiPopup, toggleApiPopup }) => {
+const ApiList = ({ apiPopup, toggleApiPopup, apiKey }) => {
   const [currentBtn, setCurrentBtn] = useState('');
 
   useEffect(() => {
@@ -33,12 +33,18 @@ const ApiList = ({ apiPopup, toggleApiPopup }) => {
           <FontAwesomeIcon
             icon='times'
             size='lg'
+            className='pointer'
             onClick={() => toggleApiPopup(!apiPopup)}
           />
         </div>
         <small>Geocode</small>
         <div className='input-group'>
-          <input readOnly type='text' id='geocode' value='hello there' />
+          <input
+            readOnly
+            type='text'
+            id='geocode'
+            value={`https://barikoi.xyz/v1/api/search/geocode/${apiKey}/place?`}
+          />
           <Clipboard
             data-clipboard-target='#geocode'
             button-title='geocode'
@@ -51,7 +57,12 @@ const ApiList = ({ apiPopup, toggleApiPopup }) => {
 
         <small>Reverse Geocode</small>
         <div className='input-group'>
-          <input readOnly type='text' id='reverse' value='hello 1' />
+          <input
+            readOnly
+            type='text'
+            id='reverse'
+            value={`https://barikoi.xyz/v1/api/search/reverse/geocode/${apiKey}/place?`}
+          />
           <Clipboard
             data-clipboard-target='#reverse'
             button-title='reverse'
@@ -63,7 +74,12 @@ const ApiList = ({ apiPopup, toggleApiPopup }) => {
         </div>
         <small>Autocomplete</small>
         <div className='input-group'>
-          <input readOnly type='text' id='autocomplete' value='hello 2' />
+          <input
+            readOnly
+            type='text'
+            id='autocomplete'
+            value={`https://barikoi.xyz/v1/api/search/autocomplete/${apiKey}/place?`}
+          />
           <Clipboard
             data-clipboard-target='#autocomplete'
             button-title='autocomplete'
@@ -77,7 +93,12 @@ const ApiList = ({ apiPopup, toggleApiPopup }) => {
         </div>
         <small>Nearby</small>
         <div className='input-group'>
-          <input readOnly type='text' id='nearby' value='hello 3' />
+          <input
+            readOnly
+            type='text'
+            id='nearby'
+            value={`https://barikoi.xyz/v1/api/search/nearby/${apiKey}`}
+          />
           <Clipboard
             data-clipboard-target='#nearby'
             button-title='nearby'
@@ -89,7 +110,12 @@ const ApiList = ({ apiPopup, toggleApiPopup }) => {
         </div>
         <small>Distance</small>
         <div className='input-group'>
-          <input readOnly type='text' id='distance' value='hello 4' />
+          <input
+            readOnly
+            type='text'
+            id='distance'
+            value={`https://barikoi.xyz/v1/api/distance/${apiKey}`}
+          />
           <Clipboard
             data-clipboard-target='#distance'
             button-title='distance'
@@ -101,7 +127,12 @@ const ApiList = ({ apiPopup, toggleApiPopup }) => {
         </div>
         <small>Routing</small>
         <div className='input-group'>
-          <input readOnly type='text' id='routing' value='hello 5' />
+          <input
+            readOnly
+            type='text'
+            id='routing'
+            value={`https://barikoi.xyz/v1/api/route/${apiKey}`}
+          />
           <Clipboard
             data-clipboard-target='#routing'
             button-title='routing'

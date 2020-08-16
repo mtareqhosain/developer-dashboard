@@ -96,7 +96,7 @@
 
 .account {
   grid-area: content;
-  position: relative;
+  //position: relative;
 
   h2 {
     text-align: center;
@@ -156,6 +156,9 @@
       'side-nav content';
   }
 
+  .nav-header {
+    padding-top: 1.9em;
+  }
   .side-nav {
     position: static;
   }
