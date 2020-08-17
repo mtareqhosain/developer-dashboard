@@ -14,6 +14,7 @@ const Account = ({
   apiKey,
   apiKeyMessage,
   getApiKey,
+  generateKey,
 }) => {
   const [resetPopup, toggleResetPopup] = useState(false);
   const [apiPopup, toggleApiPopup] = useState(false);

@@ -66,8 +66,6 @@ export default function (state = initialState, action) {
     case GET_KEY_FAIL:
       return {
         ...state,
-        apiKeyMessage: action.payload.message,
-        apiKey: null,
       };
 
     case GET_ANALYTICS_FAIL:
@@ -78,7 +76,6 @@ export default function (state = initialState, action) {
 
     case REGISTER_SUCCESS:
     case LOGIN_USER:
-      console.log('TOKEN FOUND', action.payload);
       localStorage.setItem('token', action.payload);
       return {
         ...state,
@@ -103,6 +100,10 @@ export default function (state = initialState, action) {
         error: action.payload,
         loading: false,
         user: null,
+        message: null,
+        apiKey: null,
+        apiKeyMessage: null,
+        analytics: null,
       };
     default:
       return state;

@@ -63,15 +63,16 @@ export const register = (formData) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(loadUser());
+    const { email, password } = formData;
+
+    dispatch(loginUser({ email, password }));
   } catch (err) {
-    console.log('Reg error', err.response.data.message);
+    if (err) {
+      const errors = Object.values(err.response.data.message);
 
-    const errors = Object.values(err.response.data.message);
-    console.log('Reg errors', errors);
-
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error, 'danger')));
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error, 'danger')));
+      }
     }
   }
 };
@@ -157,7 +158,6 @@ export const getApiKey = () => async (dispatch) => {
     } else {
       dispatch({
         type: GET_KEY_FAIL,
-        payload: res.data,
       });
     }
   } catch (err) {
@@ -183,13 +183,11 @@ export const generateKey = () => async (dispatch) => {
     } else {
       dispatch({
         type: GET_KEY_FAIL,
-        payload: res.data,
       });
     }
   } catch (err) {
     dispatch({
       type: GET_KEY_FAIL,
-      payload: err.data,
     });
   }
 };
@@ -216,7 +214,6 @@ export const getAnalytics = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: GET_ANALYTICS_FAIL,
-      payload: err.data.message,
     });
   }
 };

@@ -17,7 +17,7 @@ const Dashboard = ({
   useEffect(() => {
     getApiKey();
     getAnalytics();
-  }, []);
+  }, [apiKey]);
 
   return loading ? (
     <Spinner loading={loading} />

@@ -22,7 +22,6 @@ const Login = ({ isAuthenticated, loginUser }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formState);
     loginUser(formState);
   };
 

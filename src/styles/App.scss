@@ -22,7 +22,7 @@
   background: linear-gradient(212deg, #041341 0, #0a1d33 100%) no-repeat
     padding-box;
   overflow: auto;
-  width: 300px;
+  width: 250px;
   padding: 0.7em 1.3em;
   transition: all 1s;
   height: 100vh;
@@ -93,7 +93,9 @@
     }
   }
 }
-
+.account-card {
+  justify-content: space-evenly;
+}
 .account {
   grid-area: content;
   //position: relative;
