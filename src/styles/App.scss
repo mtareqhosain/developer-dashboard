@@ -1,0 +1,186 @@
+@import 'variables';
+@import 'typography';
+@import 'global';
+@import 'auth';
+@import 'account';
+
+.brand-logo {
+  span {
+    color: $logo-green;
+  }
+}
+
+.nav-header {
+  grid-area: nav-header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.side-nav {
+  grid-area: side-nav;
+  background: linear-gradient(212deg, #041341 0, #0a1d33 100%) no-repeat
+    padding-box;
+  overflow: auto;
+  width: 250px;
+  padding: 0.7em 1.3em;
+  transition: all 1s;
+  height: 100vh;
+  color: $white;
+  position: absolute;
+  z-index: 2;
+
+  .side-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  ul {
+    margin-top: 15px;
+    margin-left: 1.3em;
+
+    li {
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+  }
+}
+.close-sidebar {
+  width: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+.dashboard {
+  grid-area: content;
+
+  .analytics {
+    margin-top: 25px;
+
+    small {
+      font-weight: bold;
+    }
+
+    table {
+      margin-top: 10px;
+      overflow: hidden;
+      // border: 2px solid rgba($color: #c6dbf793, $alpha: 0.3);
+      width: 100%;
+      border-radius: 0.8rem;
+      box-shadow: 0px 18px 32px #21318414;
+      border-collapse: collapse;
+
+      td,
+      th {
+        border-bottom: 1px solid #ddd;
+        padding: 8px;
+        padding-left: 25px;
+      }
+
+      tr:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+
+      th {
+        background-color: $color-block-violet;
+        color: white;
+        text-align: left;
+        font-weight: 600;
+      }
+    }
+  }
+}
+.account-card {
+  justify-content: space-evenly;
+}
+.account {
+  grid-area: content;
+  //position: relative;
+
+  h2 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 33px;
+  }
+
+  .account-cards {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+
+    .card-2 {
+      padding-top: 1.7rem;
+      margin-bottom: 25px;
+      position: relative;
+      overflow: hidden;
+
+      .card-header {
+        background-color: $color-block-violet;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 43px;
+        padding-left: 1.7rem;
+        padding-top: 0.5rem;
+        color: white;
+      }
+
+      button {
+        margin-top: 15px;
+      }
+
+      & > * {
+        margin-bottom: 0.7rem;
+      }
+
+      & > p:first-of-type {
+        margin-top: 30px;
+      }
+
+      & > :first-child {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .App {
+    display: grid;
+    grid-template-columns: auto 9fr;
+    grid-template-rows: 50px auto;
+    grid-template-areas:
+      'side-nav nav-header'
+      'side-nav content';
+  }
+
+  .nav-header {
+    padding-top: 1.9em;
+  }
+  .side-nav {
+    position: static;
+  }
+
+  .account {
+    .account-card {
+      width: 365px;
+    }
+    .account-cards {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-top: 80px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 1360px) {
+  .brand-logo {
+    font-size: 1.8rem;
+  }
+}

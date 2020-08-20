@@ -1,0 +1,106 @@
+.auth {
+  display: grid;
+  place-items: center;
+}
+
+.auth-form {
+  margin-top: 100px;
+  padding: 1.8rem 1.6rem;
+  box-shadow: 0px 18px 32px #21318414;
+  border-radius: 0.8rem;
+  border: 2px solid rgba($color: #c6dbf793, $alpha: 0.3);
+  max-width: 400px;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  span,
+  p {
+    font-size: 0.8rem;
+  }
+
+  p {
+    text-align: center;
+
+    small {
+      cursor: pointer;
+    }
+  }
+
+  span {
+    margin-left: 6px;
+  }
+
+  .button-space {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    background-color: $text-input;
+    border: none;
+    outline: none;
+    border-radius: 0.6rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .auth {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+  .auth-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .auth-form {
+    margin-top: 0;
+    padding: 2rem 1.8rem;
+  }
+  .auth_img {
+    display: block;
+    max-width: 600px;
+    max-height: 600px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .auth-flex {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .auth-form {
+    padding: 2.5rem 2.2rem;
+
+    p {
+      font-size: 0.9rem;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='password'] {
+      padding: 1rem 1.4rem;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+  }
+}
