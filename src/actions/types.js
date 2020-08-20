@@ -1,3 +1,5 @@
+// auth
+
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
@@ -15,3 +17,10 @@ export const GET_ANALYTICS_FAIL = 'GET_ANALYTICS_FAIL';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
+// api
+
+export const GET_PACKAGES_SUCCESS = 'GET_PACKAGES_SUCCESS';
+export const GET_PACKAGES_FAIL = 'GET_PACKAGES_FAIL';
+export const RESET_EMAIL_SUCCESS = 'RESET_EMAIL_SUCCESS';
+export const RESET_EMAIL_FAIL = 'RESET_EMAIL_FAIL';

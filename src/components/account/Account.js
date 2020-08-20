@@ -5,6 +5,7 @@ import { getApiKey, generateKey } from '../../actions/auth';
 
 // Component imports
 import ResetForm from './ResetForm';
+import ResetEmailForm from './ResetEmailForm';
 import ApiList from './ApiList';
 import Spinner from '../layout/Spinner';
 
@@ -17,6 +18,7 @@ const Account = ({
   generateKey,
 }) => {
   const [resetPopup, toggleResetPopup] = useState(false);
+  const [resetEmailPopup, toggleResetEmailPopup] = useState(false);
   const [apiPopup, toggleApiPopup] = useState(false);
 
   useEffect(() => {
@@ -60,18 +62,32 @@ const Account = ({
             <p>User: {user.name}</p>
             <p>Email: {user.email}</p>
             <p>Contact: {user.phone}</p>
-            <button
-              className='btn-1 btn-left-corner'
-              onClick={() => toggleResetPopup(!resetPopup)}
-            >
-              Reset Password
-            </button>
+            <div className='btn-flex'>
+              <button
+                className='btn-1 btn-left-corner'
+                onClick={() => toggleResetPopup(!resetPopup)}
+              >
+                Reset Password
+              </button>
+              <button
+                className='btn-1 btn-left-corner'
+                onClick={() => toggleResetEmailPopup(!resetEmailPopup)}
+              >
+                Reset Email
+              </button>
+            </div>
           </div>
         </div>
         {resetPopup && (
           <ResetForm
             resetPopup={resetPopup}
             toggleResetPopup={toggleResetPopup}
+          />
+        )}
+        {resetEmailPopup && (
+          <ResetEmailForm
+            resetEmailPopup={resetEmailPopup}
+            toggleResetEmailPopup={toggleResetEmailPopup}
           />
         )}
 

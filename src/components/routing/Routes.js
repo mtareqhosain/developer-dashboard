@@ -6,6 +6,7 @@ import Dashboard from '../dashboard/Dashboard';
 import Account from '../account/Account';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
+import Packages from '../packages/Packages';
 
 import PrivateRoute from './PrivateRoute';
 
@@ -17,6 +18,7 @@ const Routes = (props) => {
         <PrivateRoute exact path='/account' component={Account} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
+        <PrivateRoute exact path='/packages' component={Packages} />
       </Switch>
     </Fragment>
   );

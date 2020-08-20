@@ -11,7 +11,8 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background: transparent linear-gradient(121deg, #ffffff 0%, #f8f8fa 100%) 0%
     0% no-repeat padding-box;
 }
@@ -91,7 +92,7 @@ a {
   border-radius: 0.3rem;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }
 .btn-left-corner {
@@ -142,6 +143,10 @@ a {
     -webkit-animation: none;
     animation: none;
   }
+}
+.btn-flex {
+  display: flex;
+  justify-content: space-between;
 }
 
 .dropdown-content {

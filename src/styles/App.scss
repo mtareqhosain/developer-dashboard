@@ -3,6 +3,7 @@
 @import 'global';
 @import 'auth';
 @import 'account';
+@import 'packages';
 
 .brand-logo {
   span {
@@ -25,7 +26,8 @@
   width: 250px;
   padding: 0.7em 1.3em;
   transition: all 1s;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   color: $white;
   position: absolute;
   z-index: 2;
@@ -109,7 +111,6 @@
   .account-cards {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
 
     .card-2 {
       padding-top: 1.7rem;
@@ -130,7 +131,12 @@
       }
 
       button {
+        background-color: rgba(0, 0, 0, 0.1);
         margin-top: 15px;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
       }
 
       & > * {
@@ -173,7 +179,8 @@
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      margin-top: 80px;
+
+      margin-top: 40px;
       margin-bottom: 0;
     }
   }
