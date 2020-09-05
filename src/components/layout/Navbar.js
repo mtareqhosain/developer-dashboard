@@ -40,6 +40,9 @@ const Navbar = ({ isAuthenticated, loading, logout }) => {
           <li>
             <Link to='/account'>Account</Link>
           </li>
+          <li>
+            <Link to='/packages'>Packages</Link>
+          </li>
         </ul>
       </div>
       <header

@@ -11,7 +11,8 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background: transparent linear-gradient(121deg, #ffffff 0%, #f8f8fa 100%) 0%
     0% no-repeat padding-box;
 }
@@ -84,14 +85,14 @@ a {
   background: none;
   padding: 10px 15px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 12px;
   cursor: pointer;
   border: none;
   outline: none;
   border-radius: 0.3rem;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }
 .btn-left-corner {
@@ -143,6 +144,19 @@ a {
     animation: none;
   }
 }
+.btn-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown {
+  h4 {
+    font-size: 14px !important;
+    &:hover {
+      color: white;
+    }
+  }
+}
 
 .dropdown-content {
   display: none;
@@ -162,9 +176,25 @@ a {
   display: none;
 }
 
+@media only screen and (min-width: 768px) {
+  .btn-flex {
+    justify-content: flex-start !important;
+    button {
+      margin-right: 20px;
+    }
+  }
+}
+
 @media only screen and (min-width: 1024px) {
   .hide-tablet {
     display: none;
+  }
+
+  .btn-flex {
+    justify-content: space-between !important;
+    button {
+      margin-right: 0px;
+    }
   }
 
   .wrapper {
