@@ -1,18 +1,18 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { connect } from 'react-redux';
+import { verifyUpgrade } from '../../actions/api';
 
-const VerificationForm = ({ verificationPopup, toggleVerificationPopup }) => {
+const VerificationForm = ({
+  verificationPopup,
+  toggleVerificationPopup,
+  verifyUpgrade,
+  apiKey,
+  email,
+}) => {
   const [formState, setFormState] = useState({
-    code: '',
+    access_token: '',
   });
-  useEffect(() => {
-    document.addEventListener('mousedown', handleToggle);
-    return () => {
-      document.removeEventListener('mousedown', handleToggle);
-    };
-  }, []);
-
-  const node = useRef();
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -20,22 +20,13 @@ const VerificationForm = ({ verificationPopup, toggleVerificationPopup }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    verifyUpgrade(apiKey, formState);
   };
 
-  const handleToggle = (e) => {
-    if (node.current.contains(e.target)) {
-      return;
-    }
-    toggleVerificationPopup(!verificationPopup);
-  };
   return (
     <Fragment>
       <div className='modal'></div>
-      <form
-        ref={node}
-        className='popup card-1 verification-form'
-        onSubmit={handleSubmit}
-      >
+      <form className='popup card-1 verification-form' onSubmit={handleSubmit}>
         <div className='popup-header'>
           <h3>Verification</h3>
 
@@ -46,25 +37,24 @@ const VerificationForm = ({ verificationPopup, toggleVerificationPopup }) => {
             onClick={() => toggleVerificationPopup(!verificationPopup)}
           />
         </div>
-        <p>*Insert the verification code sent to ab**1@test.com</p>
+        <p>*Insert the verification code sent to {email}</p>
         <div className='input-group'>
           <input
             type='text'
             placeholder='Verification Code'
-            name='token'
+            name='access_token'
             onChange={handleChange}
           />
         </div>
 
-        <button
-          className='btn-1'
-          onClick={() => toggleVerificationPopup(!verificationPopup)}
-        >
-          Verify
-        </button>
+        <button className='btn-1'>Verify</button>
       </form>
     </Fragment>
   );
 };
 
-export default VerificationForm;
+const mapStateToProps = (state) => ({
+  email: state.auth.user.data.email,
+});
+
+export default connect(mapStateToProps, { verifyUpgrade })(VerificationForm);

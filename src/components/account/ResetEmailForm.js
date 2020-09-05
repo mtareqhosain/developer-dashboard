@@ -8,9 +8,10 @@ const ResetEmailForm = ({
   resetEmailPopup,
   toggleResetEmailPopup,
   resetEmail,
+  apiKey,
 }) => {
   const [formState, setFormState] = useState({
-    newEmail: '',
+    billing_email: '',
   });
   useEffect(() => {
     document.addEventListener('mousedown', handleToggle);
@@ -27,7 +28,7 @@ const ResetEmailForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    resetEmail(formState);
+    resetEmail(apiKey, formState.billing_email);
   };
 
   const handleToggle = (e) => {
@@ -54,7 +55,7 @@ const ResetEmailForm = ({
           <input
             type='text'
             placeholder='New Email'
-            name='newEmail'
+            name='billing_email'
             onChange={handleChange}
           />
         </div>

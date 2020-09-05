@@ -85,7 +85,7 @@ a {
   background: none;
   padding: 10px 15px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 12px;
   cursor: pointer;
   border: none;
   outline: none;
@@ -149,6 +149,15 @@ a {
   justify-content: space-between;
 }
 
+.dropdown {
+  h4 {
+    font-size: 14px !important;
+    &:hover {
+      color: white;
+    }
+  }
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -167,9 +176,25 @@ a {
   display: none;
 }
 
+@media only screen and (min-width: 768px) {
+  .btn-flex {
+    justify-content: flex-start !important;
+    button {
+      margin-right: 20px;
+    }
+  }
+}
+
 @media only screen and (min-width: 1024px) {
   .hide-tablet {
     display: none;
+  }
+
+  .btn-flex {
+    justify-content: space-between !important;
+    button {
+      margin-right: 0px;
+    }
   }
 
   .wrapper {

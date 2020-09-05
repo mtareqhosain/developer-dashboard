@@ -1,16 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { requestUpgrade, getActivePackage } from '../../actions/api';
+import { useEffect } from 'react';
 
 const Package = ({
-  key,
+  id,
   name,
   base_price,
   additional_calls,
   api_calls,
   verificationPopup,
   toggleVerificationPopup,
+  requestUpgrade,
+  apiKey,
+  currentPackage,
+  getActivePackage,
 }) => {
+  useEffect(() => {
+    getActivePackage(apiKey);
+  }, [apiKey]);
+
+  const handleClick = (e) => {
+    window.scrollTo(0, 0);
+    requestUpgrade(apiKey, id);
+    toggleVerificationPopup(!verificationPopup);
+  };
   return (
-    <div className='card-2 package-card'>
+    <div
+      className={`card-2 package-card ${
+        currentPackage === name ? 'active-card' : ''
+      }`}
+    >
       <div className='card-header'>
         <h3>{name}</h3>
       </div>
@@ -25,14 +45,21 @@ const Package = ({
           : 'Analytics Support'}
       </p>
       <p>Additional Calls ৳{additional_calls}</p>
-      <button
-        className='btn-1 btn-left-corner'
-        onClick={() => toggleVerificationPopup(!verificationPopup)}
-      >
-        Activate
-      </button>
+      {currentPackage === name ? (
+        ''
+      ) : (
+        <button className='btn-1 btn-left-corner' onClick={handleClick}>
+          Activate
+        </button>
+      )}
     </div>
   );
 };
 
-export default Package;
+const mapStateToProps = (state) => ({
+  currentPackage: state.api.currentPackage,
+});
+
+export default connect(mapStateToProps, { requestUpgrade, getActivePackage })(
+  Package
+);
