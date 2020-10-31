@@ -4,6 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
+import ForgetPassForm from './ForgetPassForm'
+
 const Login = ({ isAuthenticated, loginUser }) => {
   const [formState, setFormState] = useState({
     email: '',
@@ -14,6 +16,9 @@ const Login = ({ isAuthenticated, loginUser }) => {
   const togglePasswordVisiblity = () => {
     setPasswordShown(!passwordShown);
   };
+
+  const [passwordResetPopup, togglePasswordResetPopup] = useState(false);
+
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -74,8 +79,21 @@ const Login = ({ isAuthenticated, loginUser }) => {
               <small className='purple-text strong'>SIGN UP</small>
             </Link>
           </p>
+          
+          <p>
+            <span onClick={() => togglePasswordResetPopup(!passwordResetPopup)}>
+              <small className='purple-text strong'>Forgot Password ?</small>
+            </span>
+          </p>
         </form>
       </div>
+
+      {passwordResetPopup && (
+        <ForgetPassForm
+          passwordResetPopup={passwordResetPopup}
+          togglePasswordResetPopup={togglePasswordResetPopup}
+        />
+      )}
     </div>
   );
 };

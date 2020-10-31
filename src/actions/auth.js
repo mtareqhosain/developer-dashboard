@@ -106,10 +106,11 @@ export const loginUser = (formData) => async (dispatch) => {
       dispatch(setAlert(res.data.message, 'danger'));
     }
   } catch (err) {
-    // console.log('error: ', err.response.data);
+    
     dispatch({
       type: LOGIN_FAIL,
     });
+    dispatch(setAlert(err.response.data.message, 'danger'));
   }
 };
 
@@ -217,3 +218,20 @@ export const getAnalytics = () => async (dispatch) => {
     });
   }
 };
+
+export const requestNewPassword = (email) => async (dispatch) => {
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/auth/password/reset`, {'email': email}
+    );
+    
+    dispatch(setAlert(res.data.message, 'success'));
+    
+  } catch (err) {
+    // dispatch({
+    //   type: RESET_EMAIL_FAIL,
+    // });
+    dispatch(setAlert(err.response.data.message, 'danger'));
+  }
+};
+
