@@ -73,7 +73,6 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
                     <div style={{ flex: 'auto', alignSelf: 'center' }}>
                         <small>API Usage Table</small>
                     </div>
-
                     <div style={{ display: 'flex' }}>
                         <DatePicker
                             selected={startDate}
