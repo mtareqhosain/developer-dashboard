@@ -47,7 +47,6 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
                 .get(`${BASE_URL}`, {
                     params: {
                         date_from: startDate,
-                        //api_key: 'MTY5MjpZRVhZVDBRQkVT',
                         api_key: apiKey,
                         date_to: endDate,
                     },
