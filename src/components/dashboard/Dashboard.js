@@ -64,10 +64,6 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
         }
     };
 
-    const showToolTip = (e) => {
-        e.target.style.content = "red";
-    };
-
     return loading ? (
         <Spinner loading={loading} />
     ) : (
