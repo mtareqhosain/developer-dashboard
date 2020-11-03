@@ -17,15 +17,15 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  data: localStorage.getItem('token'),
-  isAuthenticated: false,
-  error: null,
-  loading: true,
-  user: null,
-  message: null,
-  apiKey: null,
-  apiKeyMessage: null,
-  analytics: null,
+    data: localStorage.getItem('token'),
+    isAuthenticated: false,
+    error: null,
+    loading: true,
+    user: null,
+    message: null,
+    apiKey: '',
+    apiKeyMessage: null,
+    analytics: null,
 };
 
 export default function (state = initialState, action) {
