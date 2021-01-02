@@ -21,8 +21,9 @@ const Packages = ({ apiKey, packages, loading, getAllPackages, getApiKey }) => {
   return loading ? (
     <Spinner />
   ) : (
-    <div className='account container'>
-      <h2>Packages</h2>
+      <div className='account container'>
+        <h2>Pricing Tiers</h2>
+        <a style={{color:'#488DE0', display: 'block', textAlign: 'center'}} href="https://docs.barikoi.com/docs/pricing-call/" target="_blank">API Usage and Pricing Clarification</a>
       <div className='account-cards package-cards'>
         {packages &&
           packages.map((item) => (
