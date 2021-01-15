@@ -30,7 +30,7 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
     useEffect(() => {
         getApiKey();
         getAnalytics();
-    }, [apiKey, analytics, results]);
+    }, [getApiKey, getAnalytics]);
 
     const handleClick = async (e) => {
         if (startDate !== null && endDate !== null) {

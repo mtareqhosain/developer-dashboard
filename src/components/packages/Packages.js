@@ -16,7 +16,7 @@ const Packages = ({ apiKey, packages, loading, getAllPackages, getApiKey }) => {
   useEffect(() => {
     getApiKey();
     getAllPackages();
-  }, []);
+  }, [getApiKey, getAllPackages]);
 
   return loading ? (
     <Spinner />
