@@ -7,7 +7,6 @@ import { getApiKey, getAnalytics } from '../../actions/auth';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
-import qs from 'qs';
 
 //style import from node modules
 //import 'react-datepicker/dist/react-datepicker.css';
@@ -27,10 +26,13 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
     const [results, setResult] = useState([]);
     const [isResults, setIsResults] = useState(false);
 
+    
+    
+
     useEffect(() => {
         getApiKey();
-        getAnalytics();
-    }, [getApiKey, getAnalytics]);
+        getAnalytics(apiKey);
+    }, [getApiKey, getAnalytics, apiKey]);
 
     const handleClick = async (e) => {
         if (startDate !== null && endDate !== null) {
@@ -39,19 +41,16 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
             setIsResults(true);
 
             // formate dates
-            format(startDate, 'yyyy-mm-dd');
-            format(endDate, 'yyyy-mm-dd');
+            const startD = format(startDate, 'yyyy-MM-dd');
+            const endD = format(endDate, 'yyyy-MM-dd');
 
             // get filtered responses
             axios
                 .get(`${BASE_URL}`, {
                     params: {
-                        date_from: startDate,
+                        date_from: startD,
                         api_key: apiKey,
-                        date_to: endDate,
-                    },
-                    paramsSerializer: (params) => {
-                        return qs.stringify(params, { arrayFormat: 'repeat' });
+                        date_to: endD,
                     },
                 })
                 .then((response) => {
@@ -117,27 +116,27 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
                             <tbody>
                                 <tr>
                                     <td>Autocomplete</td>
-                                    <td>{isResults && results.length > 0 ? results[0].autocomplete_count : analytics[0].autocomplete_count} calls</td>
+                                        <td>{isResults && results.length > 0 ? results[0].autocomplete_count : analytics.autocomplete_count} calls</td>
                                 </tr>
                                 <tr>
                                     <td>ReverseGeo</td>
-                                    <td>{isResults && results.length > 0 ? results[0].reverse_geo_code_count : analytics[0].reverse_geo_code_count} calls</td>
+                                        <td>{isResults && results.length > 0 ? results[0].reverse_geo_code_count : analytics.reverse_geo_code_count} calls</td>
                                 </tr>
                                 <tr>
                                     <td>Geocode</td>
-                                    <td>{isResults && results.length > 0 ? results[0].geo_code_count : analytics[0].geo_code_count} calls</td>
+                                        <td>{isResults && results.length > 0 ? results[0].geo_code_count : analytics.geo_code_count} calls</td>
                                 </tr>
                                 <tr>
                                     <td>Nearby</td>
-                                    <td>{isResults && results.length > 0 ? results[0].nearby_count : analytics[0].nearby_count} calls</td>
+                                        <td>{isResults && results.length > 0 ? results[0].nearby_count : analytics.nearby_count} calls</td>
                                 </tr>
                                 <tr>
                                     <td>Distance</td>
-                                    <td>{isResults && results.length > 0 ? results[0].distance_count : analytics[0].distance_count} calls</td>
+                                        <td>{isResults && results.length > 0 ? results[0].distance_count : analytics.distance_count} calls</td>
                                 </tr>
                                 <tr>
                                     <td>Rupantor</td>
-                                    <td>{isResults && results.length > 0 ? results[0].rupantor_batchgeo_count : analytics[0].rupantor_batchgeo_count} calls</td>
+                                        <td>{isResults && results.length > 0 ? results[0].rupantor_batchgeo_count : analytics.rupantor_batchgeo_count} calls</td>
                                 </tr>
                             </tbody>
                         )

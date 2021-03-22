@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { format } from 'date-fns';
 
 import setAuthToken from '../utils/setAuthToken';
 import { setAlert } from './alert';
@@ -22,6 +23,7 @@ import {
 } from './types';
 
 const BASE_URL = 'https://admin.barikoi.xyz:8090';
+const BASE_URL_ANALYTICS = 'https://admin.barikoi.xyz:8095/api/get/usage/date/range';
 
 export const clearErrors = () => async (dispatch) => {
   dispatch({
@@ -83,12 +85,12 @@ export const loginUser = (formData) => async (dispatch) => {
       'X-Requested-With': 'application/json',
     },
   };
-  console.log('checking form data:', formData);
+  // console.log('checking form data:', formData);
 
   try {
     const res = await axios.post(`${BASE_URL}/auth/login`, formData, config);
 
-    console.log('checking res', res.data);
+  // console.log('checking res', res.data);
 
     if (res && res.data.success === true) {
       dispatch({
@@ -168,7 +170,7 @@ export const getApiKey = () => async (dispatch) => {
   }
 };
 
-export const generateKey = () => async (dispatch) => {
+export const generateKey = () => async (dispatch, getState) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -191,33 +193,77 @@ export const generateKey = () => async (dispatch) => {
       type: GET_KEY_FAIL,
     });
   }
+  // console.log('get state:', getState())
 };
 
-export const getAnalytics = () => async (dispatch) => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
+// export const getAnalytics = apiKey => async (dispatch) => {
+//   console.log('get api', apiKey)
+//   if (localStorage.token) {
+//     setAuthToken(localStorage.token);
+//   }
 
-  try {
-    const res = await axios.get(`${BASE_URL}/developer/analytics`);
+//   try {
+//     const res = await axios.get(`${BASE_URL}/developer/analytics`);
 
-    if (res.data.message === 'Token is Invalid') {
-      dispatch({
-        type: GET_ANALYTICS_FAIL,
-        payload: res.data.message,
-      });
-    } else {
-      dispatch({
-        type: GET_ANALYTICS_SUCCESS,
-        payload: res.data,
-      });
+//     if (res.data.message === 'Token is Invalid') {
+//       dispatch({
+//         type: GET_ANALYTICS_FAIL,
+//         payload: res.data.message,
+//       });
+//     } else {
+//       dispatch({
+//         type: GET_ANALYTICS_SUCCESS,
+//         payload: res.data,
+//       });
+//     }
+//   } catch (err) {
+//     dispatch({
+//       type: GET_ANALYTICS_FAIL,
+//     });
+//   }
+// };
+
+export const getAnalytics = apiKey => async (dispatch) => {
+    // console.log('get api', apiKey)
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
     }
-  } catch (err) {
-    dispatch({
-      type: GET_ANALYTICS_FAIL,
-    });
-  }
-};
+      axios.get(`${BASE_URL_ANALYTICS}`, {
+        params: {
+          date_from: format(new Date(), 'yyyy-MM-dd'),
+          api_key: apiKey,
+          date_to: format(new Date(), 'yyyy-MM-dd'),
+      },
+      }).then((res) => {
+        // console.log('response found')
+        dispatch({
+          type: GET_ANALYTICS_SUCCESS,
+          payload: res.data.usage[0],
+        });
+      }).catch((err) => {
+        // console.log('response not found')
+      // dispatch({
+      //   type: GET_ANALYTICS_FAIL,
+      // })
+  });
+  
+    //   if (res.data.message === 'Token is Invalid') {
+    //     dispatch({
+    //       type: GET_ANALYTICS_FAIL,
+    //       payload: res.data.message,
+    //     });
+    //   } else {
+    //     dispatch({
+    //       type: GET_ANALYTICS_SUCCESS,
+    //       payload: res.data,
+    //     });
+    //   }
+    // } catch (err) {
+    //   dispatch({
+    //     type: GET_ANALYTICS_FAIL,
+    //   });
+    // }
+  };
 
 export const requestNewPassword = (email) => async (dispatch) => {
   try {
