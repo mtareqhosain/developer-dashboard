@@ -22,10 +22,10 @@ class MapAnalytics extends React.PureComponent {
     // Handle On Form Submit
     _onFormSubmit = values => {
         const { apiKey } = this.props
-        const { selectedApi, date, time } = values
+        const { selectedApi, date } = values
         
         // Terminating Condition
-        if(!selectedApi || !selectedApi.url || !date || !time || !apiKey) {
+        if(!selectedApi || !selectedApi.url || !date || !apiKey) {
             alert('Invalid Request!')
             return
         }
@@ -34,7 +34,7 @@ class MapAnalytics extends React.PureComponent {
         this.setState({ geoJsonData: null })
 
         // Fetch Locations
-        axios.get(selectedApi.url, { params: { key: apiKey, time: `${ date } ${ time }:00.000000` } })
+        axios.get(selectedApi.url, { params: { key: apiKey, time: `${ date } ${ '23:59' }:00.000000` } })
             .then(res => {
                 const { locations } = res.data
                 if(!locations) {
