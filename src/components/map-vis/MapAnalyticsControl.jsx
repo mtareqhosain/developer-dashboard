@@ -30,7 +30,7 @@ class MapAnalyticsControl extends React.PureComponent {
     }
 
     render() {
-        const { apiOptions, selectedApi, date, time } = this.state
+        const { apiOptions, selectedApi, date } = this.state
 
         return (
             <div style={ containerStyles }>
@@ -67,7 +67,7 @@ class MapAnalyticsControl extends React.PureComponent {
                             />
                         </div>
 
-                        <div style={ formGroupStyles }>
+                        {/* <div style={ formGroupStyles }>
                             <label htmlFor='time-input' style={ labelStyles }>{ 'Select Time' }</label>
                             <input
                                 id='time-input'
@@ -79,7 +79,7 @@ class MapAnalyticsControl extends React.PureComponent {
                                 onChange={ this._onInputChange }
                                 style={ inputStyles }
                             />
-                        </div>
+                        </div> */}
 
                         <button type='submit' style={{ ...inputStyles, marginTop: '32px' }}>{ 'Submit' }</button>
                     </form>
