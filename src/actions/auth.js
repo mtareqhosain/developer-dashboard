@@ -85,12 +85,10 @@ export const loginUser = (formData) => async (dispatch) => {
       'X-Requested-With': 'application/json',
     },
   };
-  // console.log('checking form data:', formData);
 
   try {
     const res = await axios.post(`${BASE_URL}/auth/login`, formData, config);
 
-  // console.log('checking res', res.data);
 
     if (res && res.data.success === true) {
       dispatch({
@@ -193,11 +191,9 @@ export const generateKey = () => async (dispatch, getState) => {
       type: GET_KEY_FAIL,
     });
   }
-  // console.log('get state:', getState())
 };
 
 // export const getAnalytics = apiKey => async (dispatch) => {
-//   console.log('get api', apiKey)
 //   if (localStorage.token) {
 //     setAuthToken(localStorage.token);
 //   }
@@ -224,7 +220,6 @@ export const generateKey = () => async (dispatch, getState) => {
 // };
 
 export const getAnalytics = apiKey => async (dispatch) => {
-    // console.log('get api', apiKey)
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
@@ -235,13 +230,11 @@ export const getAnalytics = apiKey => async (dispatch) => {
           date_to: format(new Date(), 'yyyy-MM-dd'),
       },
       }).then((res) => {
-        // console.log('response found')
         dispatch({
           type: GET_ANALYTICS_SUCCESS,
           payload: res.data.usage[0],
         });
       }).catch((err) => {
-        // console.log('response not found')
       // dispatch({
       //   type: GET_ANALYTICS_FAIL,
       // })

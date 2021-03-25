@@ -43,6 +43,9 @@ const Navbar = ({ isAuthenticated, loading, logout }) => {
           <li>
             <Link to='/packages'>Packages</Link>
           </li>
+          <li>
+            <Link to='/map-analytics'>Map Analytics</Link>
+          </li>
         </ul>
       </div>
       <header

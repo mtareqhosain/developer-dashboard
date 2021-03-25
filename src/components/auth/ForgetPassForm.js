@@ -19,7 +19,6 @@ const ForgetPassForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('clicked')
     requestNewPassword(formState.email);
     togglePasswordResetPopup(!passwordResetPopup);
   };
