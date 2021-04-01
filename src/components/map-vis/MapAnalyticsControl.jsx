@@ -10,8 +10,7 @@ class MapAnalyticsControl extends React.PureComponent {
             },
         ],
         selectedApi: 'Reverse Geo',
-        date: '',
-        time: ''
+        date: ''
     }
 
     // Handle On Change
@@ -23,10 +22,10 @@ class MapAnalyticsControl extends React.PureComponent {
     _onSubmit = event => {
         event.preventDefault()
 
-        const { apiOptions, selectedApi, date, time } = this.state
+        const { apiOptions, selectedApi, date } = this.state
         const api = apiOptions.find(i => i.title === selectedApi)
 
-        this.props.onFormSubmit({ selectedApi: api ? api : null, date, time })
+        this.props.onFormSubmit({ selectedApi: api ? api : null, date })
     }
 
     render() {
@@ -66,21 +65,7 @@ class MapAnalyticsControl extends React.PureComponent {
                                 style={ inputStyles }
                             />
                         </div>
-
-                        {/* <div style={ formGroupStyles }>
-                            <label htmlFor='time-input' style={ labelStyles }>{ 'Select Time' }</label>
-                            <input
-                                id='time-input'
-                                name='time'
-                                type='time'
-                                required={ true }
-                                max={ new Date().toTimeString().slice(0, 5) }
-                                value={ time }
-                                onChange={ this._onInputChange }
-                                style={ inputStyles }
-                            />
-                        </div> */}
-
+                        
                         <button type='submit' style={{ ...inputStyles, marginTop: '32px' }}>{ 'Submit' }</button>
                     </form>
                 </div>
