@@ -112,7 +112,7 @@ class MapGL extends React.PureComponent {
         const bounds = bbox(geoJson)
         
         const { longitude, latitude, zoom } = viewport.fitBounds([ [ bounds[0], bounds[1] ], [ bounds[2], bounds[3] ] ], { padding: 32 })
-        this.setState({ viewState: { ...viewState, longitude, latitude, zoom } })
+        this.setState({ viewState: { ...viewState, longitude, latitude, zoom: zoom < 14 ? zoom : 14  } })
     }
 
     render() {
