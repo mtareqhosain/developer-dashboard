@@ -35,8 +35,6 @@ export const getActivePackage = (apiKey) => async (dispatch) => {
   try {
     const res = await axios.get(`${BASE_URL}/get/business/user/${apiKey}`);
 
-    console.log('From active plan', res.data);
-
     dispatch({
       type: GET_PACKAGE_SUCCESS,
       payload: res.data,
@@ -53,8 +51,6 @@ export const requestUpgrade = (apiKey, id) => async (dispatch) => {
     const res = await axios.post(
       `${BASE_URL}/request/upgrade/plan/${apiKey}?package_id=${id}`
     );
-
-    console.log('Message: ', res.data.message);
 
     if (res.data.message === 'Email sent to the email address') {
       dispatch({
@@ -79,8 +75,6 @@ export const requestUpgrade = (apiKey, id) => async (dispatch) => {
 export const verifyUpgrade = (apiKey, data) => async (dispatch) => {
   try {
     const res = await axios.post(`${BASE_URL}/verify/token/${apiKey}`, data);
-
-    console.log('Verify message: ', res.data.message, data, apiKey);
 
     if (res.data.message === 'Package Upgraded.') {
       dispatch({

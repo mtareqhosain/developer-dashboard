@@ -26,9 +26,6 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
     const [results, setResult] = useState([]);
     const [isResults, setIsResults] = useState(false);
 
-    
-    
-
     useEffect(() => {
         getApiKey();
         getAnalytics(apiKey);
@@ -36,8 +33,6 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
 
     const handleClick = async (e) => {
         if (startDate !== null && endDate !== null) {
-            //console.log('api: ', props.api);
-
             setIsResults(true);
 
             // formate dates
@@ -65,7 +60,7 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
     return loading ? (
         <Spinner loading={loading} />
     ) : (
-        <div className='dashboard container'>
+        <div className='dashboard container' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
             <div className='analytics wrapper'>
                 <div style={{ padding: '10px', display: 'flex' }}>
                     <div style={{ flex: 'auto', alignSelf: 'center' }}>
@@ -137,6 +132,11 @@ const Dashboard = ({ isAuthenticated, loading, apiKey, analytics, getApiKey, get
                                 <tr>
                                     <td>Rupantor</td>
                                         <td>{isResults && results.length > 0 ? results[0].rupantor_batchgeo_count : analytics.rupantor_batchgeo_count} calls</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Route Count</td>
+                                        <td>{isResults && results.length > 0 ? results[0].route_count : analytics.route_count} calls</td>
                                 </tr>
                             </tbody>
                         )
